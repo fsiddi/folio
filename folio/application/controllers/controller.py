@@ -21,7 +21,12 @@ from wtforms.validators import DataRequired
 from sqlalchemy import desc
 from flask.ext.login import login_user
 
-THEME = str(Setting.query.filter_by(name='folio_theme').one())
+theme_setting = Setting.query.filter_by(name='folio_theme').first()
+if theme_setting:
+    theme = str(theme_setting)
+else:
+    theme = app.config['THEME']
+THEME = theme
 
 class ContactForm(Form):
     email = TextField('Contact', validators=[DataRequired()])

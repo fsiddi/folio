@@ -8,10 +8,14 @@
     <meta name="author" content="">
     <link rel="icon" href="#">
 
-    <title>Folio</title>
+    <title>{{folio_title}}</title>
 
     <!-- Bootstrap core CSS -->
+    {% if config['AIRPLANE_MODE'] %}
     <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    {% else %}
+    a
+    {% endif %}
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='assets/css/folio.css') }}" rel="stylesheet">
@@ -30,7 +34,7 @@
       <div class="page-header">
         <a href="{{url_for('homepage')}}"><h1>{{folio_title}}</h1></a>
       </div>
-      <p class="lead">I am a 3D animator and generalist, working with both commercial and open source tools (Blender). I also have experience in graphic design and front-end development for web applications.</p>
+      <p class="lead">{{folio_bio}}</p>
 
       <div class="row">
         <div class="col-md-12">

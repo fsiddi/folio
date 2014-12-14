@@ -1,0 +1,22 @@
+class Config(object):
+    # Configured for GMAIL
+    MAIL_SERVER = ''
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = ''
+    MAIL_PASSWORD = ''
+    DEFAULT_MAIL_SENDER = ''
+    USERS = {'user': 'password'}
+    THEME = 'folio'
+    AIRPLANE_MODE = True
+
+
+class Development(Config):
+    app_dir = '/full/path/to/folio/folio/application/'
+    SECRET_KEY='SUPER-SECRET'
+    DEBUG=True
+    SQLALCHEMY_DATABASE_URI='sqlite:///folio.sqlite'
+    MEDIA_FOLDER = app_dir + 'static/files/'
+    MEDIA_URL = 'files/'
+    MEDIA_THUMBNAIL_FOLDER = app_dir + 'static/thumbnails/'
+    MEDIA_THUMBNAIL_URL = 'thumbnails/'

@@ -1,8 +1,10 @@
 *.sublime-workspace
 *.sublime-project
-
+*.sqlite
 *pyc
+
 venv/
 folio/application/static/files/
 folio/application/static/thumbnails/
 folio/config.py
+

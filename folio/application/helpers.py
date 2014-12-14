@@ -7,37 +7,6 @@ from flask import request
 from config import Config
 
 
-def hash_file_path(file_path, expiry_timestamp=None):
-  service_domain = Config.CDN_SERVICE_DOMAIN
-  domain_subfolder = Config.CDN_CONTENT_SUBFOLDER
-  asset_url = Config.CDN_SERVICE_DOMAIN_PROTOCOL + \
-    '://' + \
-    service_domain + \
-    domain_subfolder + \
-    file_path
-  
-  if Config.CDN_USE_URL_SIGNING:
-    
-    url_signing_key = Config.CDN_URL_SIGNING_KEY 
-    if not file_path.startswith('/'):
-        file_path = '/' + file_path;
-
-    hash_string = domain_subfolder + file_path + url_signing_key;
-
-    if (expiry_timestamp):
-        hash_string = expiry_timestamp + hash_string;
-        expiry_timestamp = "," + expiry_timestamp;
-
-    hashed_file_path = md5(hash_string).digest().encode('base64')[:-1]
-    hashed_file_path = hashed_file_path.replace('+', '-')
-    hashed_file_path = hashed_file_path.replace('/', '_')
-
-    asset_url = asset_url + \
-      '?secure=' + \
-      hashed_file_path
-
-  return asset_url
-
 def pretty_date(time=False):
     """
     Get a datetime object or a int() Epoch timestamp and return a
