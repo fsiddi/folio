@@ -1,0 +1,12 @@
+{% extends 'folio/layout.html' %}
+{% block body %}
+{% if project.video %}
+<iframe id="ytplayer" type="text/html" width="650" height="400"
+  src="http://www.youtube.com/embed/{{project.video}}"
+  frameborder="0"> </iframe> 
+{% else %}
+<img class="img-responsive thumbnail pull-right" src="{{url_for('static', filename=project.picture|thumbnail('650x250', crop='fit'))}}">
+{% endif %}
+<h2>{{project.name}}</h2>
+{{project.description|safe}}
+{% endblock %}

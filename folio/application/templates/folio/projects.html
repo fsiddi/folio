@@ -1,0 +1,23 @@
+{% extends 'folio/layout.html' %}
+{% block body %}
+
+{% set var = projects|length // 2 %}
+{% if var is even %}
+{% set var = var + 1 %}
+{% endif %}
+
+{% for project in projects|slice(var) %}
+<div class="row">
+	{% for item in project %}
+		<div class="col-md-6">
+		<a href="{{url_for('project', category=title, project=item.url)}}">
+			<img class="img-responsive thumbnail pull-right" src="{{url_for('static', filename=item.picture|thumbnail('650x300', crop='fit'))}}">
+			<h3>{{item.name}}</h3>
+		</a>
+		<!-- {{item.description|safe|truncate(120)}} -->
+		</div>
+	{% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}

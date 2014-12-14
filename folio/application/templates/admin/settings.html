@@ -1,0 +1,36 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+<div class="row-fluid">
+    <div class="span6">
+        <h1>Folio Settings</h1>
+        <p class="lead">This is where we configure things</p>
+        <form method="POST" action="{{url_for('settings.index')}}">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>Legend</legend>
+                <label>{{ form.folio_theme.label }}</label>
+                {{ form.folio_theme }}
+                <span class="help-block">Example block-level help text here.</span>
+
+                <label>{{ form.folio_title.label }}</label>
+                {{ form.folio_title }}
+
+                <label>{{ form.folio_footer.label }}</label>
+                {{ form.folio_footer }}
+
+                <label>{{ form.folio_bio.label }}</label>
+                {{ form.folio_bio }}
+
+                <label>{{ form.google_analytics_id.label }}</label>
+                {{ form.google_analytics_id }}
+
+                <hr>
+                
+                <button type="submit" class="btn">Submit</button>
+            </fieldset>
+            
+             
+        </form>
+</div>
+{% endblock body %}
