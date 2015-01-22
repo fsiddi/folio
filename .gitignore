@@ -2,6 +2,7 @@
 *.sublime-project
 *.sqlite
 *pyc
+.python-version
 
 venv/
 folio/application/static/files/
