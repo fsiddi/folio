@@ -20,3 +20,7 @@ class Development(Config):
     MEDIA_URL = 'files/'
     MEDIA_THUMBNAIL_FOLDER = app_dir + 'static/thumbnails/'
     MEDIA_THUMBNAIL_URL = 'thumbnails/'
+
+    CACHE_TYPE = 'filesystem'
+    CACHE_DEFAULT_TIMEOUT = 60
+    CACHE_DIR = app_dir + '../cache/' # next to the application folder

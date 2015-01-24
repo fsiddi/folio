@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint
 from flask.ext.mail import Mail
+from flask.ext.cache import Cache
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.thumbnails import Thumbnail
 from flask.ext.login import LoginManager, UserMixin
@@ -17,6 +18,8 @@ app.config.from_object(config.Development)
 db = SQLAlchemy(app)
 # Set up email
 mail = Mail(app)
+# Set up caching
+cache = Cache(app)
 
 
 thumb = Thumbnail(app)
