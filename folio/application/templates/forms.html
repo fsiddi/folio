@@ -1,0 +1,69 @@
+{# macros for rendering wtf forms and fields with bootstrap 3 #}
+
+
+{% macro render_checkbox_field(field) %}
+    <div class="checkbox">
+        <label>
+            {{ field(type='checkbox', **kwargs) }} {{ field.label }}
+        </label>
+    </div>
+{% endmacro %}
+
+
+{% macro render_radio_field(field) %}
+    {% for value, label, _ in field.iter_choices() %}
+        <div class="radio">
+            <label>
+                <input type="radio" name="{{ field.id }}" id="{{ field.id }}" value="{{ value }}">{{ label }}
+            </label>
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+
+{% macro render_field(field, label_visible=true, class='') %}
+     <div class="input-group input-group-lg margin-bottom-3 width-full{% if field.errors %} has-error {% endif %}{{ kwargs.pop('class_', '') }}">
+
+        {% if field.type != 'HiddenField' and label_visible %}
+            {{ field.label(class='control-label') }}
+        {% endif %}
+
+        {{ field(class=class) }}
+
+        {% if field.errors %}
+            {% for e in field.errors %}
+                <p class="help-block">{{ e }}</p>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+{% endmacro %}
+
+
+{% macro render_form(form, action_url='', action_text='Submit', form_id='', class_='') %}
+    <form id="{{form_id}}" method="POST" action="{{ action_url }}" role="form" class="{{ class_ }}" enctype="multipart/form-data">
+        {{ form.hidden_tag() if form.hidden_tag }}
+        {% if caller %}
+            {{ caller() }}
+        {% else %}
+            {% for f in form if f.widget.input_type != 'hidden' %}
+                {% if f.type == 'BooleanField' %}
+                    {{ render_checkbox_field(f) }}
+                {% elif f.type == 'RadioField' %}
+                    {{ render_radio_field(f) }}
+                {% elif f.type == 'CKTextAreaField' %}
+                    {{ render_field(f, class='form-control ckeditor') }}
+                {% else %}
+                    {{ render_field(f, class='form-control') }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" id="{{form_id}}_submit" class="btn btn-default">{{ action_text }}</button>
+            </div>
+            <div id="edit_notifications" class="col-md-6"></div>
+        </div>
+    </form>
+{% endmacro %}

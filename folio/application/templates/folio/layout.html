@@ -51,14 +51,20 @@
       </div>
 
 
-      {% for message in get_flashed_messages() %}
-      <div class="alert alert-warning">
-        <div class="container">
-          {{ message }}
-          <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+      <!-- Flashed messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}">  <!-- naturally recognized by bootstrap: success, info, warning, danger-->
+          <div class="container">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+          </div>
         </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+
 
       {% block body %}
       <p>Longer story here.</p>

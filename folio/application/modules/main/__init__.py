@@ -4,6 +4,10 @@ from application import app
 from application.modules.theme import get_theme_dir
 
 
+import projects
+import contact
+
+
 ## Custom error handling ##
 
 @app.errorhandler(404)

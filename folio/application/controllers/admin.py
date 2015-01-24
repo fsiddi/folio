@@ -6,8 +6,7 @@ from werkzeug import secure_filename
 
 from flask import request, Response, render_template, redirect, url_for, Markup
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask_wtf import Form
-from wtforms import form, fields, validators, TextField, TextAreaField
+from wtforms import Form, form, fields, validators, TextField, TextAreaField
 from wtforms.validators import DataRequired
 
 from sqlalchemy import event
@@ -146,8 +145,8 @@ class SettingsView(BaseView):
     @expose('/', methods=('GET', 'POST'))
     def index(self):
         form = SettingsForm()
-        
-        if form.validate_on_submit():
+
+        if request.method == 'POST' and form.validate():
             for fieldname, fieldvalue in form.data.items():
                 setting = Setting.query.filter_by(name=str(fieldname)).one()
                 setting.value = str(fieldvalue)
@@ -216,14 +215,14 @@ class ProjectView(CustomModelView):
 
     inline_model_form_converter = CustomInlineModelConverter
     inline_models = (
-        InlineModelForm(), 
+        InlineModelForm(),
     )
 
 
 # Create admin
 admin = admin.Admin(
-    app, 
-    'Backfolio', 
+    app,
+    'Backfolio',
     index_view=MyAdminIndexView(),
     base_template='admin.html')
 
