@@ -6,9 +6,9 @@ class Config(object):
     MAIL_USERNAME = ''
     MAIL_PASSWORD = ''
     DEFAULT_MAIL_SENDER = ''
+
     USERS = {'user': 'password'}
     THEME = 'folio'
-    AIRPLANE_MODE = True
 
 
 class Development(Config):
@@ -24,3 +24,10 @@ class Development(Config):
     CACHE_TYPE = 'filesystem'
     CACHE_DEFAULT_TIMEOUT = 60
     CACHE_DIR = app_dir + '../cache/' # next to the application folder
+
+    AIRPLANE_MODE = True  # for offline access to bootstrap and other static files
+
+
+
+class Production(Config):
+    AIRPLANE_MODE = False
