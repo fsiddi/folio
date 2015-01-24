@@ -21,12 +21,8 @@ from wtforms.validators import DataRequired
 from sqlalchemy import desc
 from flask.ext.login import login_user
 
-theme_setting = Setting.query.filter_by(name='folio_theme').first()
-if theme_setting:
-    theme = str(theme_setting)
-else:
-    theme = app.config['THEME']
-THEME = theme
+#temporary
+THEME_DIR = 'folio/'
 
 class ContactForm(Form):
     email = TextField('Contact', validators=[DataRequired()])
@@ -56,7 +52,7 @@ def contact():
         print form.content.data
         return redirect('/')
     return render_template(
-        THEME + '/contact.html', 
+        THEME_DIR + '/contact.html',
         form=form,
         title='contact')
 
@@ -68,7 +64,7 @@ def index_projects(category):
             order_by(desc(Project.creation_date)).\
             all()
         return render_template(
-            THEME + '/projects.html',
+            THEME_DIR + '/projects.html',
             title=category,
             projects=projects)
 
@@ -79,8 +75,5 @@ def project(category, project):
         filter(Project.url == project).\
         first_or_404()
     return render_template(
-        THEME + '/project.html', project=project)
+        THEME_DIR + '/project.html', project=project)
 
-@app.errorhandler(404)
-def not_found(error):
-    return render_template(THEME + '/404.html'), 404

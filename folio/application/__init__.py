@@ -25,6 +25,10 @@ cache = Cache(app)
 thumb = Thumbnail(app)
 login_manager = LoginManager(app)
 
+
+# Import all modules
+from modules import main
+
 # Import controllers
 from models import model
 from controllers import controller
