@@ -1,33 +1,18 @@
-from flask import (abort,
-                   Blueprint,
-                   jsonify,
-                   render_template,
-                   redirect,
-                   request,
-                   url_for)
+from flask import render_template
 
 from application import app
 from application import db
 
-from application.models.model import (
-    Project,
-    Category,
-    Setting)
-
-from sqlalchemy import desc
-from flask.ext.login import login_user
-
+from application.modules.projects.model import Category
+from application.modules.projects.model import Project
 from application.modules.theme import get_theme_dir
 
+from flask import render_template
+
+from sqlalchemy import desc
 
 
-@app.context_processor
-def inject_settings():
-    settings = Setting.query.all()
-    settings_dic = {}
-    for setting in settings:
-        settings_dic[setting.name] = setting.value
-    return settings_dic
+
 
 @app.route('/')
 def homepage():

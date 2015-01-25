@@ -28,16 +28,14 @@ login_manager = LoginManager(app)
 
 # Import all modules
 from modules import main
+from modules import projects
+from modules import admin
 
-# Import controllers
-from models import model
-from controllers import controller
-from controllers import admin
 
 # Create user loader function
 @login_manager.user_loader
 def load_user(username):
-    return model.User.get(username)
+    return main.model.User.get(username)
 
 # Register blueprints for the imported controllers
 filemanager = Blueprint('filemanager', __name__, static_folder='static/files')

@@ -1,10 +1,21 @@
 from flask import render_template
 from application import app
 
+from application.modules.main.model import Setting
 from application.modules.theme import get_theme_dir
 
 
-import projects
+
+@app.context_processor
+def inject_settings():
+    settings = Setting.query.all()
+    settings_dic = {}
+    for setting in settings:
+        settings_dic[setting.name] = setting.value
+    return settings_dic
+
+
+
 import contact
 
 

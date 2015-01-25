@@ -14,12 +14,11 @@ from sqlalchemy import event
 from application import app
 from application import db
 
-from application.models.model import (
-    User,
-    Project,
-    Category,
-    Setting,
-    Picture)
+from application.modules.main.model import User
+from application.modules.main.model import Setting
+from application.modules.projects.model import Category
+from application.modules.projects.model import Project
+from application.modules.projects.model import Picture
 
 from flask.ext import admin, login
 from flask.ext.admin import helpers, expose, BaseView
@@ -42,7 +41,7 @@ class SettingsForm(Form):
     google_analytics_id = TextField('Google Analytics', validators=[DataRequired()])
 
 # Create directory for file fields to use
-file_path = op.join(op.dirname(__file__), '../static/files',)
+file_path = app.config['MEDIA_FOLDER']
 try:
     os.mkdir(file_path)
 except OSError:

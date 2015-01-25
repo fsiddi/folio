@@ -1,5 +1,5 @@
 from application import app
-from application.models.model import Setting
+from application.modules.main.model import Setting
 
 
 #query the theme
