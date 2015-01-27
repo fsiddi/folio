@@ -12,12 +12,9 @@ from flask import render_template
 from sqlalchemy import desc
 
 
-
-
 @app.route('/')
 def homepage():
     return index_projects('film')
-
 
 
 @app.route('/<category>')
@@ -31,6 +28,7 @@ def index_projects(category):
             get_theme_dir() + '/projects.html',
             title=category,
             projects=projects)
+
 
 @app.route('/<category>/<project>')
 def project(category, project):
