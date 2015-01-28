@@ -19,7 +19,7 @@ def homepage():
 
 @app.route('/<category>')
 def index_projects(category):
-    if Category.query.filter_by(name=category).first_or_404():
+    if Category.query.filter_by(url=category).first_or_404():
         projects = Project.query.join(Category).\
             filter(Category.name == category).\
             order_by(desc(Project.creation_date)).\
@@ -33,7 +33,7 @@ def index_projects(category):
 @app.route('/<category>/<project>')
 def project(category, project):
     project = Project.query.join(Category).\
-        filter(Category.name == category).\
+        filter(Category.url == category).\
         filter(Project.url == project).\
         first_or_404()
     return render_template(

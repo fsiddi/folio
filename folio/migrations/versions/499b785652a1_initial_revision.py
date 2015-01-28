@@ -25,6 +25,7 @@ def upgrade():
     op.create_table('category',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=120), nullable=False),
+    sa.Column('url', sa.String(length=120), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('project',
