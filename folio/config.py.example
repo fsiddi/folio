@@ -1,11 +1,5 @@
 class Config(object):
-    # Configured for GMAIL
-    MAIL_SERVER = ''
-    MAIL_PORT = 465
-    MAIL_USE_SSL = True
-    MAIL_USERNAME = ''
-    MAIL_PASSWORD = ''
-    DEFAULT_MAIL_SENDER = ''
+    USER_EMAIL = ""
 
     USERS = {'user': 'password'}
     THEME = 'folio'

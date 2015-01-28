@@ -12,11 +12,13 @@ from wtforms import StringField
 from wtforms import TextAreaField
 from wtforms import validators
 
+from application.helpers.emails import send_email
+
 
 class ContactForm(Form):
-    name = StringField('Name', [
-        validators.InputRequired()
-    ])
+    # name = StringField('Name', [
+    #     validators.InputRequired()
+    # ])
     email = StringField('Email', [
         validators.InputRequired(),
         validators.Length(min=6, message='Too short'),
@@ -35,10 +37,7 @@ def contact():
     form = ContactForm(request.form)
 
     if request.method == 'POST' and form.validate():
-        print form.name.data
-        print form.email.data
-        print form.subject.data
-        print form.content.data
+        send_email(form.subject.data, form.email.data, form.content.data)
         flash('Your email has been sent successfully. Thanks!', 'success')
         return redirect('/contact')
 
