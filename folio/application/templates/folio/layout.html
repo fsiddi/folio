@@ -42,9 +42,9 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="nav nav-pills nav-justified">
-            <li {% if title == 'film' %}class="active"{% endif %}><a href="{{url_for('homepage')}}">Film</a></li>
-            <li {% if title == 'software' %}class="active"{% endif %}><a href="{{url_for('index_projects', category='software')}}">Software</a></li>
-            <li {% if title == 'other' %}class="active"{% endif %}><a href="{{url_for('index_projects', category='other')}}">Other</a></li>
+            {% for category in categories %}
+             <li {% if title == category[0] %}class="active"{% endif %}><a href="{{url_for('index_projects', category=category[0])}}">{{category[1]}}</a></li>
+            {% endfor %}
             <li {% if title == 'contact' %}class="active"{% endif %}><a href="{{url_for('contact')}}">Contact</a></li>
           </ul>
         </div>

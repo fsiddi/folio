@@ -21,9 +21,10 @@ def homepage():
 def index_projects(category):
     if Category.query.filter_by(url=category).first_or_404():
         projects = Project.query.join(Category).\
-            filter(Category.name == category).\
+            filter(Category.url == category).\
             order_by(desc(Project.creation_date)).\
             all()
+        print projects
         return render_template(
             get_theme_dir() + '/projects.html',
             title=category,
@@ -37,5 +38,7 @@ def project(category, project):
         filter(Project.url == project).\
         first_or_404()
     return render_template(
-        get_theme_dir() + '/project.html', project=project)
+        get_theme_dir() + '/project.html',
+        project=project,
+        title=category)
 

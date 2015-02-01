@@ -2,6 +2,7 @@ from flask import render_template
 from application import app
 
 from application.modules.main.model import Setting
+from application.modules.projects.model import Category
 from application.modules.theme import get_theme_dir
 
 
@@ -12,6 +13,13 @@ def inject_settings():
     for setting in settings:
         settings_dic[setting.name] = setting.value
     return settings_dic
+
+
+@app.context_processor
+def inject_categories():
+    categories = Category.query.all()
+    categories_list = [(category.url, category.name) for category in categories]
+    return {'categories' : categories_list}
 
 
 import contact
