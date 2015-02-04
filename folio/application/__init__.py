@@ -20,10 +20,14 @@ db = SQLAlchemy(app)
 mail = Mail(app)
 # Set up caching
 cache = Cache(app)
-
-
+# Thumbnails
 thumb = Thumbnail(app)
+# Flask-Login
 login_manager = LoginManager(app)
+# create user loader function
+@login_manager.user_loader
+def load_user(username):
+    return main.model.User.get(username)
 
 
 # Import all modules
@@ -32,10 +36,7 @@ from modules import projects
 from modules import admin
 
 
-# Create user loader function
-@login_manager.user_loader
-def load_user(username):
-    return main.model.User.get(username)
+
 
 # Register blueprints for the imported controllers
 filemanager = Blueprint('filemanager', __name__, static_folder='static/files')

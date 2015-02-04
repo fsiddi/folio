@@ -6,10 +6,11 @@ class Config(object):
 
 
 class Development(Config):
-    app_dir = '/full/path/to/folio/folio/application/'
+    folio_dir = '/home/stitch/workspace/folio/folio/'
+    app_dir = folio_dir + 'application/'
     SECRET_KEY='SUPER-SECRET'
     DEBUG=True
-    SQLALCHEMY_DATABASE_URI='sqlite:///folio.sqlite'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + folio_dir + 'folio.sqlite'
     MEDIA_FOLDER = app_dir + 'static/files/'
     MEDIA_URL = 'files/'
     MEDIA_THUMBNAIL_FOLDER = app_dir + 'static/thumbnails/'
@@ -17,7 +18,7 @@ class Development(Config):
 
     CACHE_TYPE = 'filesystem'
     CACHE_DEFAULT_TIMEOUT = 60
-    CACHE_DIR = app_dir + '../cache/' # next to the application folder
+    CACHE_DIR = folio_dir + 'cache/' # next to the application folder
 
     AIRPLANE_MODE = True  # for offline access to bootstrap and other static files
 

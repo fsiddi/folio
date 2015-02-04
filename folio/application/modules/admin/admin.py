@@ -77,7 +77,7 @@ def _handle_image_delete(mapper, conn, target):
 # This widget uses custom template for inline field list
 class CustomInlineFieldListWidget(RenderTemplateWidget):
     def __init__(self):
-        super(CustomInlineFieldListWidget, self).__init__('field_list.html')
+        super(CustomInlineFieldListWidget, self).__init__('admin/field_list.html')
 
 
 # This InlineModelFormList will use our custom widget
@@ -223,7 +223,7 @@ admin = admin.Admin(
     app,
     'Backfolio',
     index_view=MyAdminIndexView(),
-    base_template='admin.html')
+    base_template='admin/layout_admin.html')
 
 # Add views
 admin.add_view(CustomModelView(Category, db.session))
