@@ -1,10 +1,15 @@
 from flask import render_template
 from application import app
 
-from application.modules.main.model import Setting
-from application.modules.projects.model import Category
+from application.modules.main.model_user_settings import Setting
+from application.modules.main.model_projects import Category
+from application.modules.main.model_projects import Project
 from application.modules.theme import get_theme_dir
 
+from sqlalchemy import desc
+
+
+###### Data to be injected for use in the templates
 
 @app.context_processor
 def inject_settings():
@@ -22,10 +27,47 @@ def inject_categories():
     return {'categories' : categories_list}
 
 
+
+
+###### Routes
+
+@app.route('/')
+def homepage():
+    return index_projects('film')
+
+
+@app.route('/<category>')
+def index_projects(category):
+    if Category.query.filter_by(url=category).first_or_404():
+        projects = Project.query.join(Category).\
+            filter(Category.url == category).\
+            order_by(desc(Project.creation_date)).\
+            all()
+        print projects
+        return render_template(
+            get_theme_dir() + '/projects.html',
+            title=category,
+            projects=projects)
+
+
+@app.route('/<category>/<project>')
+def project(category, project):
+    project = Project.query.join(Category).\
+        filter(Category.url == category).\
+        filter(Project.url == project).\
+        first_or_404()
+    return render_template(
+        get_theme_dir() + '/project.html',
+        project=project,
+        title=category)
+
+
 import contact
 
 
-## Custom error handling ##
+
+
+######  Custom error handling
 
 @app.errorhandler(404)
 def page_not_found(error):

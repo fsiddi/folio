@@ -27,12 +27,11 @@ login_manager = LoginManager(app)
 # create user loader function
 @login_manager.user_loader
 def load_user(username):
-    return main.model.User.get(username)
+    return main.model_user_settings.User.get(username)
 
 
 # Import all modules
 from modules import main
-from modules import projects
 from modules import admin
 
 

@@ -1,5 +1,5 @@
 from application import app
-from application.modules.main.model import Setting
+from application.modules.main.model_user_settings import Setting
 
 
 def get_theme_dir():
