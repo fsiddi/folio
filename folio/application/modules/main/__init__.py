@@ -40,7 +40,7 @@ def inject_social_links():
 
 @app.route('/')
 def homepage():
-    return index_projects('film')
+    return index_projects(Category.query.first_or_404().url)
 
 
 @app.route('/<category>')
