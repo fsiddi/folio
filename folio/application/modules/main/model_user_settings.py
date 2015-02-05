@@ -36,3 +36,13 @@ class Setting(db.Model):
 
     def __str__(self):
         return str(self.value)
+
+
+class SocialLink(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    order = db.Column(db.Integer)
+    icon = db.Column(db.String(16), nullable=False)
+    handle = db.Column(db.String(128), nullable=False)
+    href = db.Column(db.String(128), nullable=False)
+
+

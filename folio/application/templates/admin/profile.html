@@ -1,0 +1,12 @@
+{% extends 'admin/master.html' %}
+
+{% from 'forms.html' import render_form %}
+
+{% block body %}
+{{ super() }}
+
+<div class="col-md-12">
+{{ render_form(form, action_url='', action_text='Save', form_id='', class_='') }}
+</div>
+
+{% endblock body %}

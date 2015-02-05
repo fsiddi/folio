@@ -6,8 +6,11 @@ from werkzeug import secure_filename
 
 from flask import request, Response, render_template, redirect, url_for, Markup
 from flask.ext.sqlalchemy import SQLAlchemy
+
 from wtforms import Form, form, fields, validators, TextField, TextAreaField
 from wtforms.validators import DataRequired
+from wtforms import StringField
+from wtforms import TextAreaField
 
 from sqlalchemy import event
 
@@ -16,6 +19,7 @@ from application import db
 
 from application.modules.main.model_user_settings import User
 from application.modules.main.model_user_settings import Setting
+from application.modules.main.model_user_settings import SocialLink
 from application.modules.main.model_projects import Category
 from application.modules.main.model_projects import Project
 from application.modules.main.model_projects import Picture
@@ -137,39 +141,6 @@ image_upload_field = admin_form.ImageUploadField('Image',
                     endpoint='filemanager.static')
 
 
-class SettingsView(BaseView):
-    def is_accessible(self):
-        return login.current_user.is_authenticated()
-
-    @expose('/', methods=('GET', 'POST'))
-    def index(self):
-        form = SettingsForm()
-
-        if request.method == 'POST' and form.validate():
-            for fieldname, fieldvalue in form.data.items():
-                setting = Setting.query.filter_by(name=str(fieldname)).one()
-                setting.value = str(fieldvalue)
-                db.session.add(setting)
-            db.session.commit()
-            return redirect(url_for('.index'))
-
-        form.folio_theme.data = Setting.query.filter_by(name='folio_theme').one()
-        form.folio_title.data = Setting.query.filter_by(name='folio_title').one()
-        form.folio_footer.data = Setting.query.filter_by(name='folio_footer').one()
-        form.folio_bio.data = Setting.query.filter_by(name='folio_bio').one()
-        form.google_analytics_id.data = Setting.query.filter_by(name='google_analytics_id').one()
-        return self.render('admin/settings.html', form=form)
-
-
-class DesignView(BaseView):
-    def is_accessible(self):
-        return login.current_user.is_authenticated()
-
-    @expose('/')
-    def index(self):
-        return self.render('admin/design.html')
-
-
 
 
 # Create customized views with access restriction
@@ -218,6 +189,57 @@ class ProjectView(CustomModelView):
     )
 
 
+class SettingsView(BaseView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated()
+
+    @expose('/', methods=('GET', 'POST'))
+    def index(self):
+        form = SettingsForm()
+
+        if request.method == 'POST' and form.validate():
+            for fieldname, fieldvalue in form.data.items():
+                setting = Setting.query.filter_by(name=str(fieldname)).one()
+                setting.value = str(fieldvalue)
+                db.session.add(setting)
+            db.session.commit()
+            return redirect(url_for('.index'))
+
+        form.folio_theme.data = Setting.query.filter_by(name='folio_theme').one()
+        form.folio_title.data = Setting.query.filter_by(name='folio_title').one()
+        form.folio_footer.data = Setting.query.filter_by(name='folio_footer').one()
+        form.folio_bio.data = Setting.query.filter_by(name='folio_bio').one()
+        form.google_analytics_id.data = Setting.query.filter_by(name='google_analytics_id').one()
+        return self.render('admin/settings.html', form=form)
+
+
+class ProfileForm(Form):
+    title = StringField('Folio Title', [
+        validators.Length(max=78, message='Limited to 78 characters')
+    ])
+    bio = TextAreaField('Short Biography', [
+    ])
+
+class ProfileView(BaseView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated()
+
+    @expose('/', methods=('GET', 'POST'))
+    def index(self):
+        if request.method == 'POST':
+            form = ProfileForm(request.form)
+        else:
+            form = ProfileForm()
+            form.title.data = Setting.query.filter_by(name='folio_title').first()
+
+        if request.method == 'POST' and form.validate():
+            flash('Your data has been saved successfully.', 'success')
+
+        return self.render('admin/profile.html', form=form)
+
+
+
+
 # Create admin
 admin = admin.Admin(
     app,
@@ -226,11 +248,12 @@ admin = admin.Admin(
     base_template='admin/layout_admin.html')
 
 # Add views
+admin.add_view(ProfileView(name='Profile', endpoint='profile', category='Profile'))
+admin.add_view(CustomModelView(SocialLink, db.session, name='Social Links', endpoint='social_links', category='Profile'))
 admin.add_view(CustomModelView(Category, db.session))
 admin.add_view(ProjectView(Project, db.session))
 admin.add_view(CustomModelView(Setting, db.session))
 admin.add_view(SettingsView(name='General', endpoint='settings', category='Settings'))
-admin.add_view(DesignView(name='Design', endpoint='design', category='Settings'))
 admin.add_view(FileAdmin(file_path, '/static/files/', name='Static Files'))
 
 

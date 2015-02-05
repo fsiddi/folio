@@ -36,8 +36,13 @@
     <div class="container">
       <div class="page-header">
         <a href="{{url_for('homepage')}}"><h1>{{folio_title}}</h1></a>
+        <div class="social-icons pull-right">
+          {% for link in social_links %}
+            <a href="{{link[2]}}" title="{{link[1]}}"><i class="{{link[0]}}"></i></a>
+          {% endfor %}
+        </div>
       </div>
-      <p class="lead">{{folio_bio}}</p>
+      <p class="lead"><i class="bf-blender"></i>{{folio_bio}}</p>
 
       <div class="row">
         <div class="col-md-12">

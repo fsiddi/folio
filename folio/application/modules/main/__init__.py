@@ -2,6 +2,7 @@ from flask import render_template
 from application import app
 
 from application.modules.main.model_user_settings import Setting
+from application.modules.main.model_user_settings import SocialLink
 from application.modules.main.model_projects import Category
 from application.modules.main.model_projects import Project
 from application.modules.theme import get_theme_dir
@@ -26,6 +27,12 @@ def inject_categories():
     categories_list = [(category.url, category.name) for category in categories]
     return {'categories' : categories_list}
 
+
+@app.context_processor
+def inject_social_links():
+    links = SocialLink.query.order_by(SocialLink.order).all()
+    links_list = [(l.icon, l.handle, l.href) for l in links]
+    return {'social_links' : links_list}
 
 
 
