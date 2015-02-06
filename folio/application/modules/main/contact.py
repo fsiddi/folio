@@ -6,6 +6,7 @@ from flask import request
 from flask import render_template
 from flask import redirect
 from flask import flash
+from flask import url_for
 
 from wtforms import Form
 from wtforms import StringField
@@ -39,7 +40,7 @@ def contact():
     if request.method == 'POST' and form.validate():
         send_email(form.subject.data, form.email.data, form.content.data)
         flash('Your email has been sent successfully. Thanks!', 'success')
-        return redirect('/contact')
+        return redirect(url_for('contact'))
 
     return render_template(
         get_theme_dir() + '/contact.html',

@@ -6,7 +6,7 @@ from application import app
 
 def send_email(subject, sender, text):
     SENDMAIL = "/usr/sbin/sendmail" # sendmail location 
-    TO = app.config['user_email']
+    TO = app.config['USER_EMAIL']
     # Prepare actual message 
     message = """From: {0} 
 To: {1}
