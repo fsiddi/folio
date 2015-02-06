@@ -1,5 +1,6 @@
 class Config(object):
-    USER_EMAIL = ""
+    FORM_SENDER = "" # Because Dreamhost being safe
+    FORM_RECEIVER = ""
 
     USERS = {'user': 'password'}
     THEME = 'folio'

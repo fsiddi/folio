@@ -6,13 +6,14 @@ from application import app
 
 def send_email(subject, sender, text):
     SENDMAIL = "/usr/sbin/sendmail" # sendmail location 
-    TO = app.config['USER_EMAIL']
+    TO = app.config['FORM_RECEIVER']
+    FROM = app.config['FORM_SENDER']
     # Prepare actual message 
     message = """From: {0} 
 To: {1}
 Subject: {2}
 {3}
-""".format(sender, TO, subject, text) 
+""".format(FROM, TO, subject, text) 
 
     print message
     # Send the mail 
