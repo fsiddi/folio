@@ -12,8 +12,9 @@ def send_email(subject, sender, text):
     message = """From: {0} 
 To: {1}
 Subject: {2}
-{3}
-""".format(FROM, TO, subject, text) 
+{3} writes:
+{4}
+""".format(FROM, TO, subject, sender, text) 
 
     print message
     # Send the mail 
