@@ -22,6 +22,8 @@ class Project(db.Model):
     website = db.Column(db.String(120))
     facebook = db.Column(db.String(120))
     creation_date = db.Column(db.DateTime(), default=datetime.datetime.now)
+    time_frame = db.Column(db.String(120))
+    company = db.Column(db.String(120))
 
     category_id = db.Column(db.Integer(), db.ForeignKey(Category.id))
     category = db.relationship(Category, backref='Project')
