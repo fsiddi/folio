@@ -50,7 +50,6 @@ def index_projects(category):
             filter(Category.url == category).\
             order_by(desc(Project.creation_date)).\
             all()
-        print projects
         return render_template(
             get_theme_dir() + '/projects.html',
             title=category,
