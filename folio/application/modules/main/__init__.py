@@ -5,6 +5,7 @@ from application.modules.main.model_user_settings import Setting
 from application.modules.main.model_user_settings import SocialLink
 from application.modules.main.model_projects import Category
 from application.modules.main.model_projects import Project
+from application.modules.pages import view
 from application.modules.theme import get_theme_dir
 
 from sqlalchemy import desc
@@ -41,6 +42,10 @@ def inject_social_links():
 @app.route('/')
 def homepage():
     return index_projects(Category.query.first_or_404().url)
+
+@app.route('/about')
+def about():
+    return view('about')
 
 
 @app.route('/<category>')

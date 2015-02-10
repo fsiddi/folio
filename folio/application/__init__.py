@@ -33,8 +33,7 @@ def load_user(username):
 # Import all modules
 from modules import main
 from modules import admin
-
-
+from modules import pages
 
 
 # Register blueprints for the imported controllers
