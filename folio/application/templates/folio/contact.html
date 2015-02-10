@@ -1,14 +1,32 @@
 {% extends 'folio/layout.html' %}
-
-{% from 'forms.html' import render_form %}
-
-
 {% block page_title %}Contact{% endblock %}
 
 {% block body %}
-
-<div class="col-md-12">
-{{ render_form(form, action_url='contact', action_text='Send', form_id='', class_='') }}
+<div class="row">
+  <div class="col-md-12">
+    <p>To get in touch fill in the form. I'm also available on twitter @brita_pt and on the Blender Network.</p>
+  </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+  <form method="POST" action="{{url_for('contact')}}" role="form">
+    {% for field in form %}
+      {{ field.label }}
+      <div class="form-group {% if field.errors %} has-error {% endif %}">
+        {{ field(class='form-control', rows=6) }}
+        {% if field.errors %}
+            {% for e in field.errors %}
+                <p class="help-block">{{ e }}</p>
+            {% endfor %}
+        {% endif %}
+      </div>
+    {% endfor %}
+    <button class="btn btn-default">Submit</button>
+  </form>
+  </div>
+
+</div>
+
 
 {% endblock body %}

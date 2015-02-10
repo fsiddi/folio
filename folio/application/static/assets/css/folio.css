@@ -7,6 +7,8 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background: #EFEFEF;
+  color: #666;
 }
 .footer {
   position: absolute;
@@ -22,6 +24,14 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+a {
+  color: #E85A58;
+}
+
+a:hover {
+  color: #E88458;
+}
+
 .container {
   width: auto;
   max-width: 680px;
@@ -29,4 +39,56 @@ body {
 }
 .container .text-muted {
   margin: 20px 0;
+}
+
+.page-header {
+  border-bottom-color: #AAA;
+}
+
+.brand {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.social-icons {
+  margin-top: 36px;
+}
+
+.social-icons a {
+  margin-left: 2px;
+}
+
+.social-icons a:hover {
+  text-decoration: none;
+}
+
+.nav {
+  margin-bottom: 25px;
+}
+
+.nav-pills>li.active>a, 
+.nav-pills>li.active>a:focus, 
+.nav-pills>li.active>a:hover {
+  background-color: #E85A58;
+}
+
+
+h3 {
+  font-size: 20px;
+}
+
+.thumbnail {
+  margin-bottom: 5px;
+}
+
+.project-entry {
+  margin-bottom: 20px;
+  display: block;
+}
+
+.project-entry a:hover {
+  text-decoration: none;
 }
