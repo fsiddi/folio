@@ -13,11 +13,12 @@
     {% if config['AIRPLANE_MODE'] %}
     <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='assets/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/css/googleapi_font_ubuntu.css') }}" rel="stylesheet">
     {% else %}
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    {% endif %}
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    {% endif %}
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='assets/css/folio.css') }}" rel="stylesheet">
@@ -53,7 +54,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
       <p class="lead">{{folio_bio}}</p>
 
