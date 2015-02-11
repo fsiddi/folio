@@ -69,8 +69,8 @@ a:hover {
   margin-bottom: 25px;
 }
 
-.nav-pills>li.active>a, 
-.nav-pills>li.active>a:focus, 
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
 .nav-pills>li.active>a:hover {
   background-color: #E85A58;
 }
@@ -91,4 +91,12 @@ h3 {
 
 .project-entry a:hover {
   text-decoration: none;
+}
+
+.project-description {
+    margin-bottom: 20px;
+}
+
+.bottom-margin {
+  margin-bottom: 20px;
 }

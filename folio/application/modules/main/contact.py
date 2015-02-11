@@ -20,7 +20,7 @@ class ContactForm(Form):
     # name = StringField('Name', [
     #     validators.InputRequired()
     # ])
-    email = StringField('Email', [
+    email = StringField('Your Email', [
         validators.InputRequired(),
         validators.Length(min=6, message='Too short'),
         validators.Email(message='A valid email address is required')

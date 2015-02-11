@@ -14,10 +14,17 @@
 
 
 <h2>{{project.name}}</h2>
-<h3>{{project.company}} - {{project.time_frame}}</h3>
-<p><a href="{{project.name}}" target="_blank">Project's homepage <i class="fa fa-external-link"></i></a></p>
 
-{{project.description|safe}}
+<h3>
+{% if project.company %}{{project.company}}{% endif %}
+<smaller style="font-size:17px">
+{% if project.company and project.time_frame %} - {% endif %}
+{% if project.time_frame %}{{project.time_frame}}{% endif %}
+</smaller>
+</h3>
+<p><a href="{{project.website}}" target="_blank">Project's website <i class="fa fa-external-link"></i></a></p>
+
+<p class="project-description">{{project.description|safe}}</p>
 
 
 {% endblock %}

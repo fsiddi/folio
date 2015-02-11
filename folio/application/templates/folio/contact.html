@@ -3,13 +3,14 @@
 
 {% block body %}
 <div class="row">
-  <div class="col-md-12">
-    <p>To get in touch fill in the form. I'm also available on twitter @brita_pt and on the Blender Network.</p>
+  <div class="col-md-12 bottom-margin">
+    <p>{{contact_message_1|safe}}</p>
+    <p>{{contact_message_2|safe}}</p>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 bottom-margin">
   <form method="POST" action="{{url_for('contact')}}" role="form">
     {% for field in form %}
       {{ field.label }}

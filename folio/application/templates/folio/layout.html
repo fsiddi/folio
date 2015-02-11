@@ -47,7 +47,7 @@
           <div class="col-md-4">
             <div class="social-icons pull-right">
             {% for link in social_links %}
-              <a href="{{link[2]}}" title="{{link[1]}}">
+              <a href="{{link[2]}}" target="_blank" title="{{link[1]}}">
                 <i class="{{link[0]}}"></i>
               </a>
             {% endfor %}
@@ -94,7 +94,7 @@
 
     <div class="footer">
       <div class="container">
-        <p class="text-muted">{{folio_footer|safe}}</p>
+        <p class="text-muted pull-right">{{folio_footer|safe}}</p>
       </div>
     </div>
 
