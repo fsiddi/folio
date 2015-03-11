@@ -6,7 +6,7 @@ from application.modules.theme import get_theme_dir
 
 pages = Blueprint('pages', __name__)
 
-# Views
+
 @pages.route('/<url>')
 def view(url):
     page = Page.query.filter_by(url=url).first_or_404()   

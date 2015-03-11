@@ -7,7 +7,6 @@ from application.modules.admin import *
 from application.modules.admin import _list_thumbnail
 
 
-# -------- Views --------
 class PageView(CustomModelView):
     column_searchable_list = ('title',)
     column_list = ('title', 'picture', 'creation_date')
@@ -18,7 +17,4 @@ class PageView(CustomModelView):
     edit_template = 'admin/contents/edit.html'
 
 
-
-# Add views
-#backend.add_view(AuthorView(Author, db.session))
 backend.add_view(PageView(Page, db.session, name='Pages', url='pages'))

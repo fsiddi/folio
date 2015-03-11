@@ -10,8 +10,7 @@ from application.modules.theme import get_theme_dir
 
 from sqlalchemy import desc
 
-
-###### Data to be injected for use in the templates
+# Data to be injected for use in the templates
 
 @app.context_processor
 def inject_settings():
@@ -37,7 +36,7 @@ def inject_social_links():
 
 
 
-###### Routes
+#Routes
 
 @app.route('/')
 def homepage():
@@ -47,19 +46,17 @@ def homepage():
 def about():
     return view('about')
 
-
 @app.route('/<category>')
 def index_projects(category):
     if Category.query.filter_by(url=category).first_or_404():
         projects = Project.query.join(Category).\
             filter(Category.url == category).\
-            order_by(desc(Project.creation_date)).\
             all()
+        projects.sort(key=lambda p: p.creation_date, reverse=True)
         return render_template(
             get_theme_dir() + '/projects.html',
             title=category,
             projects=projects)
-
 
 @app.route('/<category>/<project>')
 def project(category, project):
@@ -76,9 +73,7 @@ def project(category, project):
 import contact
 
 
-
-
-######  Custom error handling
+# Custom error handling
 
 @app.errorhandler(404)
 def page_not_found(error):
