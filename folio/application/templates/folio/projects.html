@@ -11,7 +11,7 @@
 	{% for item in project %}
 		<div class="col-md-6 project-entry">
 		<a href="{{url_for('project', category=title, project=item.url)}}">
-			<img class="img-responsive thumbnail pull-right" src="{{url_for('static', filename=item.picture|thumbnail('650x300', crop='fit'))}}">
+			<img class="img-responsive thumbnail" src="{{url_for('static', filename=item.picture|thumbnail('650x300', crop='fit'))}}">
 			<h3>{{item.name}}</h3>
 		</a>
 		<!-- {{item.description|safe|truncate(120)}} -->

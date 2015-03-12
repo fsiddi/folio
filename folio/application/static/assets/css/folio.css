@@ -7,7 +7,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-  background: #EFEFEF;
+  background: #FFF;
   color: #666;
 }
 .footer {
@@ -25,11 +25,11 @@ body {
 /* Not required for template or sticky footer method. */
 
 a {
-  color: #E85A58;
+  color: #444;
 }
 
 a:hover {
-  color: #E88458;
+  color: #666;
 }
 
 .container {
@@ -46,7 +46,7 @@ a:hover {
 }
 
 .brand {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .brand:hover {
@@ -67,21 +67,51 @@ a:hover {
 
 .nav {
   margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+
+.nav-pills>li>a,
+.nav-pills>li>a:focus,
+.nav-pills>li>a:hover {
+  font-size: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: transparent;
+  color: #666;
+  border-radius: 0;
+}
+
+.nav-pills>li>a:hover {
+  color: #333;
+  border-bottom: 1px solid #AAA;
 }
 
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:focus,
 .nav-pills>li.active>a:hover {
-  background-color: #E85A58;
+  background-color: transparent;
+  color: #333;
+  border-bottom: 1px solid #999;
+  border-radius: 0;
 }
 
-
 h3 {
-  font-size: 20px;
+  text-align: center;
+  font-size: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-transform: uppercase;
+  margin-top: 10px;
+  color: #666;
 }
 
 .thumbnail {
   margin-bottom: 5px;
+  border: none;
+  border-radius: 0;
+}
+
+.thumbnail:hover {
+  opacity: 0.8;
 }
 
 .project-entry {
