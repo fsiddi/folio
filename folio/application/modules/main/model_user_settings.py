@@ -44,5 +44,3 @@ class SocialLink(db.Model):
     icon = db.Column(db.String(16), nullable=False)
     handle = db.Column(db.String(128), nullable=False)
     href = db.Column(db.String(128), nullable=False)
-
-

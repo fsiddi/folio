@@ -64,7 +64,6 @@
             {% for category in categories %}
              <li {% if title == category[0] %}class="active"{% endif %}><a href="{{url_for('index_projects', category=category[0])}}">{{category[1]}}</a></li>
             {% endfor %}
-            <li {% if title == 'about' %}class="active"{% endif %}><a href="{{url_for('about')}}">About</a></li>
             <li {% if title == 'contact' %}class="active"{% endif %}><a href="{{url_for('contact')}}">Contact</a></li>
           </ul>
         </div>
