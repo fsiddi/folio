@@ -3,8 +3,8 @@ from application import app
 
 from application.modules.main.model_user_settings import Setting
 from application.modules.main.model_user_settings import SocialLink
-from application.modules.main.model_projects import Category
-from application.modules.main.model_projects import Project
+from application.modules.projects.model import Category
+from application.modules.projects.model import Project
 from application.modules.pages import view
 from application.modules.theme import get_theme_dir
 

@@ -1,9 +1,10 @@
-from flask import Flask, Blueprint
+from flask import Flask
+from flask import Blueprint
 from flask.ext.mail import Mail
 from flask.ext.cache import Cache
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.thumbnails import Thumbnail
-from flask.ext.login import LoginManager, UserMixin
+from flask.ext.login import LoginManager
 
 
 # Initialize the Flask all object
@@ -34,6 +35,7 @@ def load_user(username):
 from modules import main
 from modules import admin
 from modules import pages
+
 
 
 # Register blueprints for the imported controllers

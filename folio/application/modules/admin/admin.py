@@ -20,9 +20,9 @@ from application import db
 from application.modules.main.model_user_settings import User
 from application.modules.main.model_user_settings import Setting
 from application.modules.main.model_user_settings import SocialLink
-from application.modules.main.model_projects import Category
-from application.modules.main.model_projects import Project
-from application.modules.main.model_projects import Picture
+from application.modules.projects.model import Category
+from application.modules.projects.model import Project
+from application.modules.projects.model import Picture
 
 from flask.ext import admin, login
 from flask.ext.admin import helpers, expose, BaseView
