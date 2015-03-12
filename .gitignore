@@ -7,5 +7,5 @@
 venv/
 folio/application/static/files/
 folio/application/static/thumbnails/
+folio/application/static/favicon/
 folio/config.py
-
