@@ -5,6 +5,8 @@ from application.modules.main.model_user_settings import Setting
 from application.modules.main.model_user_settings import SocialLink
 from application.modules.projects.model import Category
 from application.modules.projects.model import Project
+from application.modules.nodes.models import Node
+from application.modules.nodes.models import NodeType
 from application.modules.pages import view
 from application.modules.theme import get_theme_dir
 
@@ -23,7 +25,7 @@ def inject_settings():
 
 @app.context_processor
 def inject_categories():
-    categories = Category.query.all()
+    categories = Node.query.join(NodeType).filter(NodeType.name=='category').all()
     categories_list = [(category.url, category.name) for category in categories]
     return {'categories' : categories_list}
 

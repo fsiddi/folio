@@ -35,6 +35,8 @@ def load_user(username):
 from modules import main
 from modules import admin
 from modules import pages
+from application.modules.nodes import node_types
+from application.modules.nodes import nodes
 
 
 
